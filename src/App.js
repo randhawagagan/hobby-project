@@ -5,12 +5,13 @@ import NavBar from './components/NavBar';
 import todosData from './mockdata/todosData';
 import ToDoItemComponent from './components/ToDoItemComponent'
 
-const TodoComponentArray = todosData.map( todosData =>  <ToDoItemComponent
-    key={todosData.id}
-    items={todosData}/> );
+
 
 class App extends Component{
   render() {
+    const TodoComponentArray = todosData.map( todosData =>  <ToDoItemComponent
+        key={todosData.id}
+        items={todosData}/> );
     return (
       <div className="App">
       <NavBar/>
