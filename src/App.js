@@ -11,17 +11,36 @@ class App extends Component{
     this.state = {
       todos : todosData
     }
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(id){
+    this.setState(prevState => {
+      const newTodoData = prevState.todos.map( prevItems => {
+        if(prevItems.id === id){
+          prevItems.completed = !prevItems.completed;
+        }
+        return prevItems;
+      } )
+      return{
+        todos: newTodoData
+      }
+    })
+    //console.log("Changed"+ id);
+  }
+
   render() {
-    const TodoComponentArray = this.state.todos.map( todosData =>  <ToDoItemComponent
+    const TodoComponentArray = this.state.todos.map(
+      todosData =>  <ToDoItemComponent
        key={todosData.id}
-       items={todosData}/> );
+       items={todosData}
+       handleChange={this.handleChange}/> );
 
     return (
       <div className="App">
       <NavBar/>
       <div className="todo-list">
-<StateComponent/>
+      <StateComponent/>
            {TodoComponentArray}
        </div>
        <Footer/>
